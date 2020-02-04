@@ -33,8 +33,8 @@ public class EtagereService implements IEtagereService{
 	}
 
 	@Override
-	public void deleteEtagere(Etagere etagere) {
-		etagereRepository.delete(etagere);
+	public void deleteEtagere(long id) {
+		etagereRepository.deleteById(id);
 		
 	}
 

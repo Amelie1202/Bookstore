@@ -11,7 +11,7 @@ import fr.adaming.formation.bookstore.model.Categorie;
 import fr.adaming.formation.bookstore.repository.ICategorieRepository;
 
 @Service
-public class CategorieService implements ICatagorieService{
+public class CategorieService implements ICategorieService{
 	
 	@Autowired 
 	ICategorieRepository categorieRepository;
@@ -34,8 +34,8 @@ public class CategorieService implements ICatagorieService{
 		return categorie;
 	}
 	@Override
-	public void deleteCategorie(Categorie categorie) {
-		categorieRepository.delete(categorie);
+	public void deleteCategorie(long id) {
+		categorieRepository.deleteById(id);
 	}
 
 	@Override

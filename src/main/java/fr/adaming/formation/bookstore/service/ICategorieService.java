@@ -6,10 +6,10 @@ import java.util.List;
 import fr.adaming.formation.bookstore.model.Categorie;
 
 
-public interface ICatagorieService {
+public interface ICategorieService {
 	public Categorie saveCategorie(Categorie categorie); 
 	public Categorie getOneCategorie(long id);
-	public void deleteCategorie(Categorie categorie);
+	public void deleteCategorie(long id);
 	public List<Categorie> getAllCategorie();
 	
 

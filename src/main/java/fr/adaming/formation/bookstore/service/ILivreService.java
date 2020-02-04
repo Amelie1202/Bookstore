@@ -9,7 +9,7 @@ public interface ILivreService {
 
 	public Livre saveLivre(Livre livre); //le save fait le update et le create
 	public Livre getOneLivre(long id);
-	public void  deleteLivre(Livre livre);
+	public void  deleteLivre(long id);
 	public List<Livre> getAllLivre();
 	
 }

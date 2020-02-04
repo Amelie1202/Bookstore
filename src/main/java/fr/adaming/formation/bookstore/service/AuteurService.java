@@ -34,9 +34,9 @@ public class AuteurService implements IAuteurService{
 	}
 
 	@Override
-	public void deleteAuteur(Auteur auteur) {
+	public void deleteAuteur(long id) {
 		// TODO Auto-generated method stub
-		auteurRepository.delete(auteur);
+		auteurRepository.deleteById(id);
 	}
 
 	@Override

@@ -36,9 +36,9 @@ public class LivreService implements ILivreService{
 
 
 	@Override
-	public void deleteLivre(Livre livre) {
+	public void deleteLivre(long id) {
 		// TODO Auto-generated method stub
-      livreRepository.delete(livre); 
+      livreRepository.deleteById(id); 
 	}
 
 	@Override
