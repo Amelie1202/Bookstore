@@ -41,6 +41,10 @@ public class CategorieController {
 	public void deleteCategorie(@PathVariable long id) {
 		 categorieService.deleteCategorie(id);
 	}
+	@DeleteMapping("delete2/{id}")
+	public Boolean deleteById(@PathVariable long id) {
+		 return categorieService.deleteById(id);
+	}
 	
 	@PostMapping()
 	public Categorie createCategorie(@RequestBody Categorie categorie) {

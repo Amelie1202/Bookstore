@@ -1,5 +1,7 @@
 package fr.adaming.formation.bookstore.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_categorie")
-public class Categorie {
+public class Categorie  {
 	
+
 
 	private long idCategorie;
 	

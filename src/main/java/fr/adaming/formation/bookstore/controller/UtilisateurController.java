@@ -13,46 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.adaming.formation.bookstore.model.Auteur;
-import fr.adaming.formation.bookstore.service.IAuteurService;
 
+import fr.adaming.formation.bookstore.model.Utilisateur;
+import fr.adaming.formation.bookstore.service.IUtilisateurService;
 
 
 @RestController
-@RequestMapping("auteurs")
+@RequestMapping("utilisateurs")
 @CrossOrigin("http://localhost:4200")
-public class AuteurController {
+
+public class UtilisateurController {
 	@Autowired
-	IAuteurService auteurService;
+	IUtilisateurService utilisateurService;
 	
 	@GetMapping
-	public List<Auteur> getAll(){
-		return auteurService.getAllAuteur();
+	public List<Utilisateur> getAll(){
+		return utilisateurService.getAllUtilisateur();
 		
 	}
 	
 	@GetMapping("{id}") //equivalent au /:id dans node, router.get/:id
-	public Auteur getOne(@PathVariable long id) {   //id rempli dans l'url par le webservice 
-		return auteurService.getOneAuteur(id);		
+	public Utilisateur getOne(@PathVariable long id) {   //id rempli dans l'url par le webservice 
+		return utilisateurService.getOneUtilisateur(id);		
 	}
 	
-	@DeleteMapping("{id}")
-	public void deleteAuteur(@PathVariable long id) {
-		 auteurService.deleteAuteur(id);
-	}
 	@DeleteMapping("delete2/{id}")
 	public Boolean deleteById(@PathVariable long id) {
-		 return auteurService.deleteById(id);
+		 return utilisateurService.deleteById(id);
 	}
 	
 	@PostMapping()
-	public Auteur createLivre(@RequestBody Auteur auteur) {
-		return auteurService.saveAuteur(auteur);
+	public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
+		return utilisateurService.saveUtilisateur(utilisateur);
 	}
 	
 	@PutMapping("{id}")
-	public Auteur updateAuteur(@RequestBody Auteur auteur, @PathVariable long id) {
-		return auteurService.saveAuteur(auteur);
+	public Utilisateur updateUtilisateur(@RequestBody Utilisateur utilisateur, @PathVariable long id) {
+		return utilisateurService.saveUtilisateur(utilisateur);
 	}
 
 }

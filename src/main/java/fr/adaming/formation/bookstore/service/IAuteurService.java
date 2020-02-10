@@ -11,5 +11,6 @@ public interface IAuteurService {
 	public Auteur getOneAuteur(long id);
 	public void deleteAuteur(long id);
 	public List<Auteur> getAllAuteur();
+	public Boolean deleteById(long id);
 
 }

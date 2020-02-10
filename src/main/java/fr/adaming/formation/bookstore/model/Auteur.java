@@ -1,5 +1,7 @@
 package fr.adaming.formation.bookstore.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_auteur")
-public class Auteur {
+public class Auteur  {
  
 	
+
+
 	private long idAuteur;
 	
 	private String nom;

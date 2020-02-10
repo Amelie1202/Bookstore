@@ -1,5 +1,6 @@
 package fr.adaming.formation.bookstore.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.Table;
 public class Etagere {
 	
 	
+	
+
 	private long idEtagere;
 	
 	private String libelleEtagere;

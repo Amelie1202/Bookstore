@@ -11,6 +11,7 @@ public interface ICategorieService {
 	public Categorie getOneCategorie(long id);
 	public void deleteCategorie(long id);
 	public List<Categorie> getAllCategorie();
+	public Boolean deleteById(long id);
 	
 
 }

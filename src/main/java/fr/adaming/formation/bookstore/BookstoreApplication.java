@@ -55,18 +55,18 @@ public class BookstoreApplication implements CommandLineRunner {
 //		e4.setLibelleEtagere("Etagere4");
 //		etagereService.saveEtagere(e4);
 ////		
-//		Livre livre = livreService.getOneLivre(7);
+//		Livre livre = livreService.getOneLivre(7); //chercher le livre
 //		livre.setDateParution(new Date("1926/03/10"));
-//		Auteur auteur = auteurService.getOneAuteur(3);
+//		Auteur auteur = auteurService.getOneAuteur(3); //chercher l'auteur à associer
 //		Categorie categorie = categorieService.getOneCategorie(3);
 //		Etagere etagere = etagereService.getOneEtagere(3);
 //		livre.setEtagere(etagere);
 //		livre.setCategorie(categorie);
-//		livre.setAuteur(auteur);
+//		livre.setAuteur(auteur); //associer auteur livre
 //		livreService.saveLivre(livre);
 //		livreService.deleteLivre(8);
 		
-		
+		//System.out.println(livreService.findByAuteur(4l));
 		System.err.println("c'est là");
 	}
 	

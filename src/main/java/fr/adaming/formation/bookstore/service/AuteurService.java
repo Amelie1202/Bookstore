@@ -44,6 +44,16 @@ public class AuteurService implements IAuteurService{
 		// TODO Auto-generated method stub
 		return  auteurRepository.findAll();
 	}
+
+	@Override
+	public Boolean deleteById(long id) {
+		try {
+		      auteurRepository.deleteById(id); 
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+			}
 	
 
 }

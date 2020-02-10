@@ -40,6 +40,10 @@ public class EtagereController {
 	public void deleteEtagere(@PathVariable long id) {
 		 etagereService.deleteEtagere(id);
 	}
+	@DeleteMapping("delete2/{id}")
+	public Boolean deleteById(@PathVariable long id) {
+		 return etagereService.deleteById(id);
+	}
 	
 	@PostMapping()
 	public Etagere createEtagere(@RequestBody Etagere etagere) {

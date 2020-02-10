@@ -43,6 +43,16 @@ public class CategorieService implements ICategorieService{
 		// TODO Auto-generated method stub
 		return  categorieRepository.findAll();
 	}
+
+	@Override
+	public Boolean deleteById(long id) {
+		try {
+		      categorieRepository.deleteById(id); 
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+			}
 	}
 
 	

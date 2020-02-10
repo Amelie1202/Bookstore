@@ -44,4 +44,15 @@ public class EtagereService implements IEtagereService{
 		return  etagereRepository.findAll();
 	}
 
+
+	@Override
+	public Boolean deleteById(long id) {
+		try {
+		      etagereRepository.deleteById(id); 
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+			}
+
 }

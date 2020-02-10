@@ -39,6 +39,10 @@ public class LivreController {
 	public void deleteLivre(@PathVariable long id) {
 		 livreService.deleteLivre(id);
 	}
+	@DeleteMapping("delete2/{id}")
+	public Boolean deleteById(@PathVariable long id) {
+		 return livreService.deleteById(id);
+	}
 	
 	@PostMapping()
 	public Livre createLivre(@RequestBody Livre livre) {
@@ -50,4 +54,31 @@ public class LivreController {
 		return livreService.saveLivre(livre);
 	}
 
+	@PutMapping("affecterAuteur/{idLivre}/{idAuteur}") //nommer la méthode car plusieurs chemins
+	public Livre update(@PathVariable long idLivre, @PathVariable long idAuteur) {
+		return livreService.affecterAuteur(idLivre, idAuteur);
+		
+	}
+	@PutMapping("affecterCategorie/{idLivre}/{idCategorie}")
+	public Livre updateCategorie(@PathVariable long idLivre, @PathVariable long idCategorie) {
+		return livreService.affecterCategorie(idLivre, idCategorie);
+		
+	}
+	@PutMapping("affecterEtagere/{idLivre}/{idEtagere}")
+	public Livre updateEtagere(@PathVariable long idLivre, @PathVariable long idEtagere) {
+		return livreService.affecterEtagere(idLivre, idEtagere);
+		
+	}
+	@GetMapping("byAuteur/{idAuteur}") //nom de la méthode
+	public List<Livre> findByAuteur(@PathVariable long idAuteur){
+		return livreService.findByAuteur(idAuteur);
+	}
+	@GetMapping("byCategorie/{idCategorie}") //nom de la méthode
+	public List<Livre> findByCategorie(@PathVariable long idCategorie){
+		return livreService.findByCategorie(idCategorie);
+	}
+	@GetMapping("byEtagere/{idEtagere}") //nom de la méthode
+	public List<Livre> findByEtagere(@PathVariable long idEtagere){
+		return livreService.findByEtagere(idEtagere);
+	}
 }
