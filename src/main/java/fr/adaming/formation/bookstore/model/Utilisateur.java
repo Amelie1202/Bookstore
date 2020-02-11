@@ -23,6 +23,8 @@ public class Utilisateur {
 	
 	private String mdp;
 	
+	private String login;
+	
 	private Livre livre;
 	
 	
@@ -84,23 +86,36 @@ public class Utilisateur {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	
+	@Column(name = "login")
+	public String getLogin() {
+		return login;
+	}
 
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	
 	
 
 	@Override
 	public String toString() {
-		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + ", livre="
-				+ livre + "]";
+		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + ", login="
+				+ login + ", livre=" + livre + "]";
 	}
 
-	public Utilisateur(String nom, String prenom, String email, String mdp, Livre livre) {
+	public Utilisateur(String nom, String prenom, String email, String mdp, String login, Livre livre) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.mdp = mdp;
+		this.login = login;
 		this.livre = livre;
 	}
+
+
 
 
 	

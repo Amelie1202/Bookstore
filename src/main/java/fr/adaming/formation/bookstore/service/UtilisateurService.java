@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.adaming.formation.bookstore.model.Etagere;
 import fr.adaming.formation.bookstore.model.Livre;
 import fr.adaming.formation.bookstore.model.Utilisateur;
 import fr.adaming.formation.bookstore.repository.IAuteurRepository;
@@ -58,6 +59,11 @@ public class UtilisateurService implements IUtilisateurService{
 	@Override
 	public List<Utilisateur> getAllUtilisateur() {
 		return  utilisateurRepository.findAll(); 
+	}
+
+	@Override
+	public Utilisateur findByLogin(String login) {		
+		return utilisateurRepository.findByLogin(login);
 	}
 
 }

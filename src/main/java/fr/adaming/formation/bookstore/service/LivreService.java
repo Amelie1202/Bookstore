@@ -118,7 +118,7 @@ public class LivreService implements ILivreService{
 
 	@Override
 	public List<Livre> findByAuteur(long idAuteur) {
-		Auteur auteur = auteurRepository.findById(idAuteur).get();		//ici on précise qu'on recherche par l'id Auteur 
+		Auteur auteur = auteurRepository.findById(idAuteur).get();		//ici on précise qu'on recherche par l'id Auteur car c'est un objet
 		return livreRepository.findByAuteur(auteur);
 	}
 

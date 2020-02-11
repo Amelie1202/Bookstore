@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import fr.adaming.formation.bookstore.model.Auteur;
 import fr.adaming.formation.bookstore.model.Categorie;
@@ -20,6 +22,11 @@ import fr.adaming.formation.bookstore.service.ILivreService;
 
 @SpringBootApplication
 public class BookstoreApplication implements CommandLineRunner {
+	
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder () {
+		return new BCryptPasswordEncoder();
+	}
 
 	@Autowired
 	ILivreService livreService;

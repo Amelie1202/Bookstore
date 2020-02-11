@@ -12,7 +12,7 @@ public interface IUtilisateurService {
 	public Utilisateur getOneUtilisateur(long id);
 	public Boolean deleteById(long id);
 	public List<Utilisateur> getAllUtilisateur();
+	public Utilisateur findByLogin(String login);
 	
 	
-
 }

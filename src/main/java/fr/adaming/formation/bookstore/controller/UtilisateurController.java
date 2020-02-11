@@ -3,6 +3,7 @@ package fr.adaming.formation.bookstore.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,9 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateurService utilisateurService;
 	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@GetMapping
 	public List<Utilisateur> getAll(){
 		return utilisateurService.getAllUtilisateur();
@@ -44,12 +48,26 @@ public class UtilisateurController {
 	
 	@PostMapping()
 	public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
+		utilisateur.setMdp(bCryptPasswordEncoder.encode(utilisateur.getMdp())); //méthode de cryptage mdp
+		System.out.println("ajout réussi");
 		return utilisateurService.saveUtilisateur(utilisateur);
+		
 	}
 	
 	@PutMapping("{id}")
 	public Utilisateur updateUtilisateur(@RequestBody Utilisateur utilisateur, @PathVariable long id) {
 		return utilisateurService.saveUtilisateur(utilisateur);
 	}
+	
+	@PostMapping("login") // chercher le login et comparer les mdp
+	public Utilisateur login(@RequestBody Utilisateur utilisateur) {
+		Utilisateur utilisateurCryptee = utilisateurService.findByLogin(utilisateur.getLogin());
+		if(bCryptPasswordEncoder.matches(utilisateur.getMdp(), utilisateurCryptee.getMdp())) {
+			return utilisateurCryptee;
+		} else {
+			return null;
+		}
+	}
+	
 
 }
