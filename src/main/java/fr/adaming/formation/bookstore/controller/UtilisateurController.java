@@ -1,6 +1,9 @@
 package fr.adaming.formation.bookstore.controller;
 
+import java.security.Key;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import fr.adaming.formation.bookstore.model.Token;
 import fr.adaming.formation.bookstore.model.Utilisateur;
 import fr.adaming.formation.bookstore.service.IUtilisateurService;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 
 @RestController
@@ -24,6 +31,9 @@ import fr.adaming.formation.bookstore.service.IUtilisateurService;
 @CrossOrigin("http://localhost:4200")
 
 public class UtilisateurController {
+	
+	//instancer la clé pour le token
+	Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	@Autowired
 	IUtilisateurService utilisateurService;
 	
@@ -68,6 +78,29 @@ public class UtilisateurController {
 			return null;
 		}
 	}
-	
+	//méthode pour le token
+	@PostMapping("authentif") // chercher le login et comparer les mdp
+	public Token getTokenUtilisateur(@RequestBody Utilisateur utilisateur) {
+		Utilisateur utilisateurCryptee = utilisateurService.findByLogin(utilisateur.getLogin());
+		if(utilisateurCryptee != null) {
+		if(bCryptPasswordEncoder.matches(utilisateur.getMdp(), utilisateurCryptee.getMdp())) {
+			Map<String, Object> claims = new HashMap<String,Object>();
+			claims.put("idUtilisateur", utilisateurCryptee.getIdUtilisateur());
+			claims.put("nom", utilisateurCryptee.getNom()); //claims pour recuperer les donnees de la base utilisateur
+			claims.put("prenom", utilisateurCryptee.getPrenom());
+			claims.put("email", utilisateurCryptee.getEmail());
+			claims.put("login", utilisateurCryptee.getLogin());
+			
+			// respecter le Jwts car c est le nom de la biblio
+			String jws = Jwts.builder().addClaims(claims).signWith(key).compact(); //builder pour construire un token, et une variables jws qui va contenir la chaine de caractere du token
+			//add claims pour ajouter nos données, ajoute la clé (la signature) et le compact pour fermer le token
+			Token t = new Token(); //declarer un token de type token, pour envoyer sous forme de JSON au webservice
+			t.setToken(jws); //rempli de donnée
+			return t; //retourne au webservice
+		} 
+	}
+			return null;
+		}
+	}
 
-}
+
