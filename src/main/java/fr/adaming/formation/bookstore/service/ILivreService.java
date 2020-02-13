@@ -20,7 +20,7 @@ public interface ILivreService {
 	public List<Livre> findByAuteur(long idAuteur);
 	public List<Livre> findByCategorie (long idCategorie);
 	public List<Livre> findByEtagere (long idEtagere);
-	
+	public Livre affecterUtilisateur(long idLivre, long idUtilisateur);
 	
 	
 }

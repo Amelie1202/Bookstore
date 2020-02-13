@@ -27,6 +27,12 @@ public class Utilisateur {
 	
 	private Livre livre;
 	
+	private Role role;
+	
+	
+	
+	
+
 	
 
 	public Utilisateur () {}
@@ -96,16 +102,26 @@ public class Utilisateur {
 		this.login = login;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "id_role")
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 	
+
 	
 
 	@Override
 	public String toString() {
 		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + ", login="
-				+ login + ", livre=" + livre + "]";
+				+ login + ", livre=" + livre + ", role=" + role + "]";
 	}
 
-	public Utilisateur(String nom, String prenom, String email, String mdp, String login, Livre livre) {
+	public Utilisateur(String nom, String prenom, String email, String mdp, String login, Livre livre, Role role) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -113,7 +129,10 @@ public class Utilisateur {
 		this.mdp = mdp;
 		this.login = login;
 		this.livre = livre;
+		this.role = role;
 	}
+
+	
 
 
 

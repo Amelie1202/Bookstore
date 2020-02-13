@@ -37,6 +37,7 @@ public class Livre{
 	private Etagere etagere;
 	
 	private String resume;
+	private Utilisateur utilisateur;
 
 	public Livre() {
 	}
@@ -102,8 +103,20 @@ public class Livre{
 	public void setEtagere(Etagere etagere) {
 		this.etagere = etagere;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "id_utilisateur")
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
 
-	public Livre(String isbn, String titre, Auteur auteur, Date dateParution, Categorie categorie, Etagere etagere) {
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	
+	public Livre(String isbn, String titre, Auteur auteur, Date dateParution, Categorie categorie, Etagere etagere,
+			String resume, Utilisateur utilisateur) {
 		super();
 		this.isbn = isbn;
 		this.titre = titre;
@@ -111,12 +124,17 @@ public class Livre{
 		this.dateParution = dateParution;
 		this.categorie = categorie;
 		this.etagere = etagere;
+		this.resume = resume;
+		this.utilisateur = utilisateur;
 	}
+
+	
 
 	@Override
 	public String toString() {
-		return "Livre [idLivre=" + idLivre + ", isbn=" + isbn + ", titre=" + titre + ", auteur=" + auteur
-				+ ", dateParution=" + dateParution + ", categorie=" + categorie + ", etagere=" + etagere + "]";
+		return "Livre [isbn=" + isbn + ", titre=" + titre + ", auteur=" + auteur + ", dateParution=" + dateParution
+				+ ", categorie=" + categorie + ", etagere=" + etagere + ", resume=" + resume + ", utilisateur="
+				+ utilisateur + "]";
 	}
 
 	@ManyToOne

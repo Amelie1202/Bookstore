@@ -10,10 +10,12 @@ import fr.adaming.formation.bookstore.model.Auteur;
 import fr.adaming.formation.bookstore.model.Categorie;
 import fr.adaming.formation.bookstore.model.Etagere;
 import fr.adaming.formation.bookstore.model.Livre;
+import fr.adaming.formation.bookstore.model.Utilisateur;
 import fr.adaming.formation.bookstore.repository.IAuteurRepository;
 import fr.adaming.formation.bookstore.repository.ICategorieRepository;
 import fr.adaming.formation.bookstore.repository.IEtagereRepository;
 import fr.adaming.formation.bookstore.repository.ILivreRepository;
+import fr.adaming.formation.bookstore.repository.IUtilisateurRepository;
 
 @Service
 public class LivreService implements ILivreService{
@@ -26,6 +28,8 @@ public class LivreService implements ILivreService{
 	ICategorieRepository categorieRepository;
 	@Autowired 
 	IEtagereRepository etagereRepository;
+	@Autowired 
+	IUtilisateurRepository utilisateurRepository;
 	
 	@Override
 	public Livre saveLivre(Livre livre) {
@@ -132,5 +136,21 @@ public class LivreService implements ILivreService{
 	public List<Livre> findByEtagere(long idEtagere) {
 		Etagere etagere = etagereRepository.findById(idEtagere).get();		
 		return livreRepository.findByEtagere(etagere);
+	}
+
+	@Override
+	public Livre affecterUtilisateur(long idLivre, long idUtilisateur) {
+	Optional<Livre> livreOptional = livreRepository.findById(idLivre); 
+	Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findById(idUtilisateur);
+	Livre livre = new Livre();
+	Utilisateur utilisateur= new Utilisateur();
+	if (livreOptional.isPresent()& utilisateurOptional.isPresent()) {
+		livre = livreOptional.get();
+		utilisateur= utilisateurOptional.get();
+		livre.setUtilisateur(utilisateur);
+	}
+	
+	return livreRepository.save(livre);
+
 	}
 }

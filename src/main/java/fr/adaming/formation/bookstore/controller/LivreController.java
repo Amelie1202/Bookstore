@@ -81,4 +81,9 @@ public class LivreController {
 	public List<Livre> findByEtagere(@PathVariable long idEtagere){
 		return livreService.findByEtagere(idEtagere);
 	}
+	@PutMapping("affecterUtilisateur/{idLivre}/{idUtilisateur}") //nommer la méthode car plusieurs chemins
+	public Livre updateUtilisateur(@PathVariable long idLivre, @PathVariable long idUtilisateur) {
+		return livreService.affecterUtilisateur(idLivre, idUtilisateur);
+		
+	}
 }
